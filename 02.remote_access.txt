@@ -1,0 +1,46 @@
+0.
+Default files location
+/etc/my.cnf		Global
+/etc/mysql/my.cnf	Global
+$MYSQL_HOME/my.cnf	Server
+defaults-extra-file	File specified with --defaults-extra-file=path, if any
+~/.my.cnf		User
+
+
+1.
+Editing the Defaults File
+
+--1.1.
+no binding 
+ [mysqld]
+    ...
+    #skip-networking
+    ...
+    #bind-address = <some ip-address>
+    ...
+
+--1.2.
+bind to specific interface
+ [mysqld]
+    ...
+    #skip-networking
+    ...
+    port = 3306 --> you can change listening port here
+    ...
+    bind-address = <inteface ip-address>
+    OR
+    bind-address = *
+    OR
+    bind-address = 0.0.0.0
+    ...
+2.
+Granting User Connections From Remote Hosts
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.100.%' IDENTIFIED BY 'my-new-password' WITH GRANT OPTION;
+OR
+GRANT <SOME PRIVILEGES> ON <dbname>.<table name> TO '<username>'@'<remote-host>' IDENTIFIED BY '<password>' [WITH GRANT OPTION];
+
+3.
+Configure 3306 (or desirered port) in Firewall
+
+firewall-cmd --add-port=3306/tcp 
+firewall-cmd --permanent --add-port=3306/tcp

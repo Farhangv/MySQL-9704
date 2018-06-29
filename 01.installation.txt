@@ -1,0 +1,51 @@
+--YUM
+1.
+Once you have your MariaDB.repo entry, add it to a file under /etc/yum.repos.d/. 
+(We suggest something like /etc/yum.repos.d/MariaDB.repo.)
+
+An example MariaDB.repo file for CentOS 7 is:
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.1/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+
+2.
+sudo yum install mariadb-server MariaDB-client
+
+3.
+sudo systemctl start mariadb
+
+
+--RPM
+1.
+Read About RPM Packages
+https://mariadb.com/kb/en/library/about-the-mariadb-rpm-files/
+
+2.
+Download RPM Packages in desiered folder:
+https://downloads.mariadb.org/
+--For 10.3.7 (Currently latest version)
+https://ftp.harukasan.org/mariadb//mariadb-10.3.7/yum/centos7-amd64/
+https://ftp.harukasan.org/mariadb//mariadb-10.3.7/yum/centos7-amd64/rpms/
+
+3.
+Prior to installing MariaDB, be aware that it will conflict with an existing installation of MySQL. To check whether MySQL is already installed, issue the command:
+
+rpm -qa 'mysql*'
+
+4.
+Install using RPM tool
+
+rpm -ivh MariaDB-*
+
+5.
+sudo systemctl start mariadb
+
+
+Check installation
+mysql -V
+
+
+
