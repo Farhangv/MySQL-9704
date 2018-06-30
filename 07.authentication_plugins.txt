@@ -1,0 +1,3 @@
+INSTALL SONAME 'auth_socket';
+INSTALL SONAME 'auth_pam';
+

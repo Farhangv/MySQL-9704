@@ -1,0 +1,28 @@
+0.
+install git
+sudo yum install git
+git --version
+
+0.0.
+MariaDB >= 10.1
+blackhole storage engine
+The BLACKHOLE storage engine accepts data but does not store it and always returns an empty result.
+
+
+SHOW ENGINES;
+INSTALL SONAME 'ha_blackhole';
+
+1. 
+clone repository in desiered folder
+git clone https://github.com/datacharmer/test_db
+
+2.
+in cloned folder
+mysql -u <user> -p<password> < employees.sql
+
+3. 
+test installation 
+
+mysql -t < test_employees_md5.sql
+# OR
+mysql -t < test_employees_sha.sql

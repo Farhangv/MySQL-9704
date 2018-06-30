@@ -1,3 +1,18 @@
+--Remove Current Version
+1. Backup
+mysqldump -u root -ppassword --all-databases > /tmp/all-database.sql
+
+2.Stop
+systemctl stop mysql
+
+3.Copy Database directories
+cp -a /var/lib/mysql/ /var/lib/mysql.bak
+
+4.Remove
+yum remove mariadb-server mariadb mariadb-libs
+
+5.Clean Cache
+yum clean all
 --YUM
 1.
 Once you have your MariaDB.repo entry, add it to a file under /etc/yum.repos.d/. 
@@ -43,6 +58,11 @@ rpm -ivh MariaDB-*
 5.
 sudo systemctl start mariadb
 
+sudo systemctl enable mariadb
+
+
+OPTIONAL
+mysql_upgrade
 
 Check installation
 mysql -V

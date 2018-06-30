@@ -1,0 +1,12 @@
+Activating the pool of threads
+thread_handling=pool-of-threads
+
+thread_handling=one-thread-per-connection
+
+
+Monitoring the pool of threads
+SELECT @@global.thread_handling;
+
+SHOW STATUS LIKE 'threadpool%';
+
+SHOW VARIABLES LIKE 'thread_pool%';

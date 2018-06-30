@@ -1,0 +1,60 @@
+MariaDB starting with 10.0.5
+Roles were introduced in MariaDB 10.0.5.
+---------------------------------------------------------
+The SET DEFAULT ROLE statement allows one to set a default role for a user. A default role is automatically enabled when a user connects (an implicit SET ROLE statement is executed immediately after a connection is established).
+---------------------------------------------------------
+SELECT * FROM information_schema.APPLICABLE_ROLES;
+SELECT * FROM information_schema.ENABLED_ROLES;
+
+
+CREATE ROLE journalist;
+
+GRANT SHOW DATABASES ON *.* TO journalist;
+
+GRANT journalist to hulda;
+--------------------------------------------------------
+SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
++--------------------+
+
+SELECT CURRENT_ROLE;
++--------------+
+| CURRENT_ROLE |
++--------------+
+| NULL         |
++--------------+
+
+SET ROLE journalist;
+
+SELECT CURRENT_ROLE;
++--------------+
+| CURRENT_ROLE |
++--------------+
+| journalist   |
++--------------+
+
+SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| ...                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
+| ...                |
++--------------------+
+
+SET ROLE NONE;
+
+------------------------------------------------------
+Roles can be granted to roles:
+
+CREATE ROLE writer;
+
+GRANT SELECT ON data.* TO writer;
+
+GRANT writer TO journalist;
