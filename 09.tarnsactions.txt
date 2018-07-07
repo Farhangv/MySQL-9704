@@ -1,0 +1,66 @@
+SHOW ENGINE INNODB STATUS
+
+SHOW PROCESSLIST
+
+SELECT * FROM information_schema.INNODB_LOCKS;
+
+SELECT * FROM information_schema.INNODB_LOCK_WAITS lw
+LEFT JOIN information_schema.INNODB_LOCKS l ON lw.BLOCKING_LOCK_ID = l.LOCK_ID;
+
+---------------------
+Phantom rows Example:
+Connection 01:
+CREATE TABLE t (a INT PRIMARY KEY) ENGINE = InnoDB;
+INSERT INTO t VALUES (1), (3), (5);
+START TRANSACTION;
+SELECT * FROM t WHERE a >= 3;
+
+Connection 02:
+INSERT INTO t VALUES (4);
+
+Connection 01:
+SELECT * FROM t WHERE a >= 3;
+COMMIT;
+SELECT * FROM t WHERE a >= 3;
+----------------------------------
+Consistent reads Example:
+Conn 01:
+CREATE TABLE t (a INT UNIQUE) ENGINE = InnoDB;
+
+START TRANSACTION WITH CONSISTENT SNAPSHOT;
+
+INSERT INTO t VALUES (1);
+
+Conn 02:
+INSERT INTO t VALUES (2);
+SELECT * FROM t;
+
+Conn01:
+COMMIT;
+SELECT * FROM t;
+--------------------------------------
+Deadlock Example:
+Connection 1:
+CREATE TABLE t1 (a INT PRIMARY KEY, b INT UNIQUE) ENGINE = InnoDB;
+
+CREATE TABLE t2 (a INT PRIMARY KEY, b INT UNIQUE) ENGINE = InnoDB;
+
+INSERT INTO t1 VALUES (1, 1);
+
+INSERT INTO t2 VALUES (1, 1);
+
+START TRANSACTION;
+
+SELECT * FROM t1 WHERE b = 1 FOR UPDATE;
+
+
+Connection 2:
+START TRANSACTION;
+
+SELECT * FROM t2 WHERE b = 1 FOR UPDATE;
+
+Connection 1:
+SELECT * FROM t2 WHERE b = 1 FOR UPDATE;
+
+Connection 2:
+SELECT * FROM t1 WHERE b = 1 FOR UPDATE;
