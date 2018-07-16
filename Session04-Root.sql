@@ -29,8 +29,14 @@ TO 'accountant';
 
 GRANT 'accountant' TO 'john'@'%';
 
+SHOW STATUS LIKE 'threadpool%';
+
+SHOW PROCESSLIST;
+KILL USER 'john';
+
 SELECT @@global.thread_handling;
 
 
 
 
+SELECT @@Threadpool_threads;

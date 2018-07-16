@@ -14,13 +14,16 @@ CREATE EVENT threadpool_logger
     ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
     DO
 		
-		INSERT INTO thread_pool_log
+		INSERT INTO dblog.thread_pool_log
         SELECT (
 			SELECT VARIABLE_VALUE FROM information_schema.GLOBAL_STATUS WHERE VARIABLE_NAME =  'threadpool_threads'
-
         ), 
 	    (
 			SELECT VARIABLE_VALUE FROM information_schema.GLOBAL_STATUS WHERE VARIABLE_NAME =  'threadpool_idle_threads'
-
-        ), NOW()
-      
+        ), NOW();
+        
+SET GLOBAL event_scheduler = ON;	
+  
+  SELECT * FROM information_schema.events;
+  SHOW PROCESSLIST;
+  
