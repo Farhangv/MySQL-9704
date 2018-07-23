@@ -1,0 +1,4 @@
+USE sakila;
+START TRANSACTION;
+SELECT * FROM film_availablity
+LOCK IN SHARE MODE;
