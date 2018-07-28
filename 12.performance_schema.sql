@@ -1,5 +1,8 @@
 SELECT @@global.general_log;
-SET GLOBAL general_log = 'ON';
+SET GLOBAL general_log = 'OFF';
+SET GLOBAL performance_schema = 'ON';
+SELECT @@global.performance_schema;
+SHOW VARIABLES LIKE 'performance_schema';
 
 SELECT *
 FROM performance_schema.setup_instruments;
@@ -41,6 +44,7 @@ FROM sakila.actor;
 
 #Step 2
 SELECT CURRENT_USER(), CONNECTION_ID();
+SELECT NOW();
 
 #Step 3
 SHOW FULL PROCESSLIST;
@@ -53,7 +57,8 @@ WHERE PROCESSLIST_ID = CONNECTION_ID();
 #Select all waits for current events
 SELECT * 
 FROM performance_schema.events_waits_current;
-
+SELECT *
+FROM performance_schema.events_waits_history;
 
 SELECT * 
 FROM performance_schema.events_waits_current e
