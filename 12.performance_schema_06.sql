@@ -49,7 +49,7 @@ ORDER BY SUM_SORT_ROWS DESC;
 
 SELECT * FROM sakila.actor ORDER BY actor_id DESC;
 SELECT * FROM sakila.actor ORDER BY first_name DESC;
-EXPLAIN SELECT * FROM sakila.actor ORDER BY last_name DESC;
+SELECT * FROM sakila.actor ORDER BY last_name DESC;
 SELECT * FROM sakila.actor 
 WHERE last_name = 'WILLIAMS'
 ORDER BY last_name DESC;
