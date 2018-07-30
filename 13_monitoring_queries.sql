@@ -5,27 +5,30 @@ SET GLOBAL net_read_timeout = 28800;
 SET GLOBAL net_write_timeout = 28800;
 
 SELECT * FROM sakila.actor;
+###################################################################
 SELECT f.title, COUNT(*) AS actor_count
 FROM sakila.actor a 
 INNER JOIN sakila.film_actor fa ON a.actor_id = fa.actor_id
 INNER JOIN sakila.film f ON fa.film_id = f.film_id
 GROUP BY f.`title`
 ORDER BY actor_count DESC; 
-
+####################################################################
+####################################################################
 SELECT f.title, a.first_name, a.last_name
 FROM sakila.actor a
 CROSS JOIN
 sakila.film f;
-
+####################################################################
 SELECT *
 FROM employees.salaries
 WHERE salary >= 50000;
 
-
+#####################################################
 SELECT * FROM sakila.actor
 INNER JOIN sakila.film_actor USING(actor_id)
 INNER JOIN sakila.film USING(film_id)
 WHERE sakila.film.title = 'Academy Dinosaur';
+#####################################################
 
 SELECT sakila.actor.*
 FROM sakila.actor

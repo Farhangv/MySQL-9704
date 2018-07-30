@@ -18,6 +18,7 @@ SUM_CREATED_TMP_DISK_TABLES AS tmp_disk_tables,
 SUM_SORT_ROWS AS rows_sorted,
 LAST_SEEN AS last_seen
 FROM performance_schema.events_statements_summary_by_digest
-WHERE DIGEST_TEXT LIKE '%sakila%' AND DIGEST_TEXT NOT LIKE 'SHOW%'
+WHERE (DIGEST_TEXT LIKE '%sakila%' OR  DIGEST_TEXT LIKE '%employees%')
+AND DIGEST_TEXT NOT LIKE 'SHOW%'
 AND DIGEST_TEXT NOT LIKE 'EXPLAIN%'
 ORDER BY exec_count DESC;
