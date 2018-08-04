@@ -29,15 +29,6 @@ EXPLAIN SELECT title, rental_duration, length
 FROM film
 WHERE rental_duration = 6 OR length = 100;
 
--- SELECT Statement UNION
-EXPLAIN SELECT title, rental_duration, length
-FROM film
-WHERE rental_duration = 6 
-UNION
-SELECT title, rental_duration, length
-FROM film
-WHERE length = 100;
-
 -- Creating Index
 CREATE INDEX idx_film_rental_duration_length ON film (rental_duration,length);
 
@@ -72,7 +63,14 @@ EXPLAIN SELECT title, rental_duration, length
 FROM film
 WHERE length = 100;
 
-
+-- SELECT Statement UNION
+EXPLAIN SELECT title, rental_duration, length
+FROM film
+WHERE rental_duration = 6 
+UNION
+SELECT title, rental_duration, length
+FROM film
+WHERE length = 100;
 -- Droping Index
 DROP INDEX idx_film_length_rental_duration ON film;
 DROP INDEX idx_film_rental_duration_length ON film;
