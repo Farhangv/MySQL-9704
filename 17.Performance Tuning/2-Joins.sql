@@ -5,6 +5,12 @@ USE sakila;
 -- -----------------------------------------------------------------------
 -- Example 1
 
+ANALYZE TABLE sakila.actor;
+OPTIMIZE TABLE sakila.actor;
+ALTER TABLE sakila.actor;
+
+
+
 SELECT *
 FROM film f
 INNER JOIN film_actor fa ON f.film_id = fa.film_id
@@ -63,7 +69,9 @@ WHERE address_id in (1,2);
 SHOW STATUS LIKE 'Last_Query_Cost';
 
 -- Complex Query = 6.199000
+-- 8.19
 -- Multiple Queries = 2.399000 + 2.399000 +2.399000 = 7.197 
+-- 9.39 + 2.8 + 2.8
 
 
 

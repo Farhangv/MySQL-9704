@@ -48,7 +48,7 @@ FROM TestTable
 WHERE ID = 100;
 
 -- SELECT Statement
-EXPLAIN SELECT FirstName, LastName
+EXPLAIN SELECT FirstName, LastNamIX_lengthe
 FROM TestTable
 WHERE ID = 100
 ORDER BY ID;

@@ -17,19 +17,33 @@ EXPLAIN SELECT *
 FROM sakila.film
 WHERE length < 80;
 
--- 
+SELECT *
+FROM sakila.film
+WHERE length < 80;
 
+SHOW STATUS LIKE 'Last_Query_Cost';
+
+-- 
+SELECT MAX(length) from sakila.film;
 EXPLAIN SELECT *
 FROM sakila.film
 WHERE length < 61;
 
-EXPLAIN SELECT *
+SELECT *
+FROM sakila.film
+WHERE length < 61;
+SHOW STATUS LIKE 'Last_Query_Cost';
+
+
+EXPLAIN EXTENDED SELECT *
 FROM sakila.film
 WHERE length >= 61 AND length <= 79;
+SHOW WARNINGS;
 
-EXPLAIN SELECT *
+EXPLAIN EXTENDED SELECT *
 FROM sakila.film
 WHERE length BETWEEN 61 AND 79;
+SHOW WARNINGS;
 
 ALTER TABLE sakila.film 
 DROP KEY IX_length;

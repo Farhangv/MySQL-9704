@@ -54,4 +54,4 @@ DROP INDEX idx_film_rental_duration ON film;
 DROP INDEX idx_film_length_rental_duration ON film;
 DROP INDEX idx_film_length_rental_duration_title ON film;
 
-
+DROP INDEX IX_length ON film;
