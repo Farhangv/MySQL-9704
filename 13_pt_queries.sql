@@ -64,7 +64,7 @@ GROUP BY co.`Code`;
 EXPLAIN SELECT SUM(city.Population) FROM country JOIN city WHERE
 city.CountryCode=country.Code AND country.HeadOfState="Vladimir Putin";
 
-
+USE world;
 SELECT ci.CountryCode,ci.District, SUM(ci.population) `DistrictPopulation`
 FROM city ci
 WHERE ci.CountryCode IN (

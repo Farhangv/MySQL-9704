@@ -1,6 +1,8 @@
 SET profiling = 1;
 
 USE world;
+SELECT SQL_SMALL_RESULT Name,Count(*) AS Cities FROM city GROUP BY Name HAVING Cities > 2;
+SELECT SQL_BIG_RESULT Name,Count(*) AS Cities FROM city GROUP BY Name HAVING Cities > 2;
 EXPLAIN SELECT SQL_SMALL_RESULT Name,Count(*) AS Cities FROM city GROUP BY Name HAVING Cities > 2;
 SHOW PROFILES;
 EXPLAIN SELECT SQL_BIG_RESULT Name,Count(*) AS Cities FROM city GROUP BY Name HAVING Cities > 2;
