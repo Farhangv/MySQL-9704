@@ -38,7 +38,7 @@ INNER JOIN address ad ON ad.address_id = st.address_id
 WHERE (c.first_name LIKE '%JULIA%' OR  c.first_name LIKE '%HENRY%')
 AND rental_date BETWEEN '2005-01-01 00:00:00' AND '2005-06-01 00:00:00';
 
-
+USE sakila;
 SELECT *
 FROM inventory ia 
 INNER JOIN film f ON f.film_id = ia.film_id
@@ -76,3 +76,7 @@ WHERE (population > 20*1000*1000 AND co.Continent IN ('Asia', 'Europe'))
 )
 GROUP BY ci.CountryCode,ci.District
 ORDER BY DistrictPopulation DESC;
+
+EXPLAIN country;
+
+CREATE INDEX IX_Pop ON country(population);
