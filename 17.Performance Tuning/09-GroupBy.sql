@@ -12,12 +12,13 @@ FROM film
 WHERE length < 100
 GROUP BY film_id;
 
-EXPLAIN SELECT title, length, COUNT(*)
+EXPLAIN EXTENDED SELECT title, length, COUNT(*)
 FROM film
 WHERE length < 100
 GROUP BY title, length;
+SHOW WARNINGS;
 
-EXPLAIN SELECT title, length, COUNT(*)
+EXPLAIN EXTENDED SELECT title, length, COUNT(*)
 FROM film
 WHERE length < 100
 GROUP BY film_id;
@@ -81,6 +82,51 @@ DROP PROCEDURE FirstOption;
 DROP PROCEDURE SecondOption;
 
 DROP TABLE `sakila`.`TestTable`;
+
+
+CREATE TABLE `sakila`.`TestTable`
+(id INT, count INT);
+
+delimiter //
+CREATE PROCEDURE FirstOption(p1 INT)
+BEGIN
+  label1: LOOP
+    SET p1 = p1 - 1;
+    IF p1 > 0 THEN		
+		INSERT INTO `sakila`.`TestTable`
+		(`id`,
+		`count`)
+		SELECT film_id, COUNT(*)
+		FROM film
+		WHERE length < 100
+		GROUP BY title, length;
+      ITERATE label1;
+    END IF;
+    LEAVE label1;
+  END LOOP label1;
+END//
+delimiter ;
+
+
+delimiter //
+CREATE PROCEDURE SecondOption(p1 INT)
+BEGIN
+  label1: LOOP
+    SET p1 = p1 - 1;
+    IF p1 > 0 THEN		
+		INSERT INTO `sakila`.`TestTable`
+		(`id`,
+		`count`)
+		SELECT film_id, COUNT(*)
+		FROM film
+		WHERE length < 100
+		GROUP BY film_id;
+      ITERATE label1;
+    END IF;
+    LEAVE label1;
+  END LOOP label1;
+END//
+delimiter ;
 
 
 
