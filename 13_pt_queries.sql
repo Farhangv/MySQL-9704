@@ -46,7 +46,7 @@ INNER JOIN store st ON st.store_id = ia.store_id
 WHERE rating IN ('PG', 'R');
 
 
-SELECT * 
+EXPLAIN SELECT * 
 FROM actor a
 LEFT OUTER JOIN film_actor fa ON a.actor_id = fa.actor_id
 LEFT OUTER JOIN film f ON f.film_id = fa.film_id

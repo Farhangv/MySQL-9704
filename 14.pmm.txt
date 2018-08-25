@@ -4,4 +4,16 @@ sudo yum install http://www.percona.com/downloads/percona-release/redhat/0.1-6/p
 yum install pmm-client
 
 
- pmm-admin config --server 192.168.55.3 --server-user farhangv --server-password q12q12q12 --bind-address 192.168.55.4 --force
+pmm-admin config 
+--server 192.168.55.3 
+--server-user farhangv 
+--server-password q12q12q12 
+--bind-address 192.168.55.4
+--client-name mariadbvm
+--force
+
+
+pmm-admin add mysql 
+--user <mysql-user> 
+--password <mysql-pass>
+
