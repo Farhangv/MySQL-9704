@@ -1,0 +1,50 @@
+# Monitor for the servers
+#
+# This will keep MaxScale aware of the state of the servers.
+# MariaDB Monitor documentation:
+# https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-mariadb-monitor/
+
+#[MariaDB-Monitor]
+type=monitor
+module=mariadbmon
+servers=server1,server2,server3
+user=maxscaleuser
+passwd=q12q12q12
+monitor_interval=1000
+
+# Service definitions
+# Monitoring for the servers
+[Galera Monitor]
+type=monitor
+module=galeramon
+servers=server1,server2,server3
+user=maxscaleuser
+passwd=q12q12q12
+monitor_interval=1000
+
+# Galera router service
+[Galera Service]
+type=service
+router=readwritesplit
+servers=server1,server2,server3
+user=maxscaleuser
+passwd=q12q12q12
+
+# MaxAdmin Service
+[MaxAdmin Service]
+type=service
+router=cli
+
+# Galera cluster listener
+[Galera Listener]
+type=listener
+service=Galera Service
+protocol=MySQLClient
+port=33061
+
+# MaxAdmin listener
+[MaxAdmin Listener]
+type=listener
+service=MaxAdmin Service
+protocol=maxscaled
+socket=default
