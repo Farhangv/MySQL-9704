@@ -4,7 +4,7 @@
 # MariaDB Monitor documentation:
 # https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-mariadb-monitor/
 
-#[MariaDB-Monitor]
+[MariaDB-Monitor]
 type=monitor
 module=mariadbmon
 servers=server1,server2,server3
