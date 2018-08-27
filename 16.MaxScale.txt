@@ -1,0 +1,6 @@
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+
+https://downloads.mariadb.com/MaxScale/2.2.13/centos/7/x86_64/maxscale-2.2.13-1.centos.7.x86_64.rpm
+
+sudo yum -y install maxscale
+
