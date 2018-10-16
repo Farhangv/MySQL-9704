@@ -4,6 +4,14 @@
 # MariaDB Monitor documentation:
 # https://mariadb.com/kb/en/mariadb-enterprise/mariadb-maxscale-22-mariadb-monitor/
 
+-----------------------------
+create user 'myuser'@'%' identified by 'mypwd';
+
+grant ALL PRIVILEGES ON *.* to 'myuser'@'%';
+
+
+
+
 [MariaDB-Monitor]
 type=monitor
 module=mariadbmon
@@ -48,3 +56,20 @@ type=listener
 service=MaxAdmin Service
 protocol=maxscaled
 socket=default
+
+
+----------------------------------------------
+maxadmin -S /tmp/maxadmin.sock
+list modules
+list servers
+list services
+list listeners
+list dcbs
+list sessions
+list filters
+
+
+show service <service-name>
+
+help
+
